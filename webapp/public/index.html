@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Utrak
+    </title>
+    <link rel="stylesheet" href="css/app.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <style type="text/css">
+    @font-face {
+        font-family:'FontAwesome';
+        src: url('/font/fontawesome-webfont.eot")?v=3.1.1');
+        /*src: url('/font/fontawesome-webfont.eot")?#iefix&v=3.1.1') format('embedded-opentype'),
+      url('/font/fontawesome-webfont.woff")?v=3.1.1') format('woff'), url('/font/fontawesome-webfont.ttf")?v=3.1.1')
+      format('truetype');*/
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <link rel="stylesheet" href="css/bootplus.min.css" />
+    <link rel="stylesheet" href="css/bootplus-responsive.min.css" />
+    <link rel="stylesheet" href="/components/ngprogress/ngProgress.css">
+</head>
+
+<body ng-cloak>
+    <!--div class="container"-->
+    <div class="span4">
+        <!-- nav -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <a class="brand" href="#">Hello</a>
+                <ul class="nav nav-pills" ng-controller="LoginController" ng-cloak>
+                    <li ng-show="loggedIn()">
+                        <a href="#" ng-click="sync()">Sync</a>
+                    </li>
+                    <li ng-show="loggedIn()">
+                        <a href="#/inbox">Inbox</a>
+                    </li>
+                    <li ng-show="loggedIn()">
+                        <a ng-click="logout()" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- search form -->
+        <div ng-cloak>
+            <form class="form-inline" ng-show="loggedIn()">
+                <input type="text" class="input " ng-model="q" placeholder="Search card...">
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="show_archive" ng-init="true" />Show Archives
+                </label>&nbsp;
+            </form>
+        </div>
+        <!-- login/signup -->
+        <div class="card" ng-hide="loggedIn()" ng-cloak>
+            <div class="card-heading simple">
+                <h3>
+                    Welcome to Utrak.
+                    <span ng-show="loggedIn()" ng-cloak>
+                        , {{ currentUser.get("username") }}
+                    </span>
+                </h3>
+            </div>
+            <div class="card-body">
+                <div ng-controller="LoginController">
+                    <div ng-hide="loggedIn()">
+                        <form class="form" name="signin_form">
+                            <input type="text" placeholder="email" ng-model="login.username" required/>
+                            <label>
+                                <input placeholder="password" type="password" ng-model="login.password" required/>
+                            </label>
+                            <a class="btn" href="#" ng-click="login();" ng-disabled="signin_form.$invalid">Sign in</a>&nbsp; or
+                        </form>
+                        <form class="form" name="signup_form">
+                            <input type="text" placeholder="email" ng-model="newuser.email" required />
+                            <input placeholder="password" type="password" ng-model="newuser.password" required/>
+                            <label>
+                                <input placeholder="confirm password" type="password" ng-model="newuser.confirm_password" required />
+                            </label>
+                            <a class="btn" href="#" ng-click="signup();" ng-disabled="(newuser.password != newuser.confirm_password) || signup_form.$invalid">Sign up</a>
+                        </form>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <!-- main stage -->
+        <div ng-view>
+        </div>
+    </div>
+    <!--/div-->
+    <!-- In production use: <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  -->
+    <script src="http://www.parsecdn.com/js/parse-1.2.9.min.js">
+    </script>
+    <script src="lib/angular/angular.js">
+    </script>
+    <script src="lib/angular/angular-sanitize.js">
+    </script>
+    <script src="lib/angular/angular-route.js">
+    </script>
+    <script src="lib/angular/angular-resource.js">
+    </script>
+    <script src="/components/ngprogress/ngProgress.js"></script>
+    <script src="js/app.js">
+    </script>
+    <script src="js/services.js">
+    </script>
+    <script src="js/controllers.js">
+    </script>
+    <script src="js/filters.js">
+    </script>
+    <script src="js/directives.js">
+    </script>
+    <script src="http://code.jquery.com/jquery.min.js">
+    </script>
+    <script src="js/bootstrap.min.js">
+    </script>
+</body>
+
+</html>

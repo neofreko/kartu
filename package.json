@@ -1,0 +1,17 @@
+{
+  "name": "utrak",
+  "description": "Utrak is smartpants app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "contextio": "~0.4.0",
+    "node-parse-api": "~0.2.2",
+    "kaiseki": "~0.5.3",
+    "cheerio": "~0.13.1",
+    "util": "~0.10.2",
+    "iconv": "~2.0.7",
+    "q": "~1.0.0",
+    "express": "~3.2.6",
+    "jade": "~0.31.2"
+  }
+}

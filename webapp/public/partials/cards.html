@@ -1,0 +1,74 @@
+<!--cards -->
+<div class="card" ng-show="loading && loggedIn()">
+  <h3 class="card-heading simple">
+    Loading...
+  </h3>
+  <div class="card-body">
+    <p>
+      Please wait
+    </p>
+  </div>
+  <div class="card-comments">
+  </div>
+</div>
+<div class="card" ng-show="cards.length==0 && loggedIn()">
+  <h3 class="card-heading simple">
+    Be patient...
+  </h3>
+  <div class="card-body">
+    <p>
+      Either you've just signed up or there's no actionable email showing in your inbox.
+      Supported email contents are:
+    </p>
+    <ul>
+      <li>
+        Asmart order notification
+      </li>
+      <li>
+        Amazon.co.jp shipping notification
+      </li>
+      <li>
+        Kuroneko Yamato notification (tracking and failed delivery)
+      </li>
+    </ul>
+  </div>
+  <div class="card-comments">
+  </div>
+</div>
+<div class="card" ng-repeat="card in cards | filter:card_done | filter:q"
+data-card-index="{{$index}}">
+  <div ng-if="card.get('image') != undefined" class="card-heading image">
+    <img src="holder.js/46x46" alt="" ng-show="card.get('icon') != undefined" />
+    <div class="card-heading-header">
+      <h3>
+        {{ card.get('parsed_with') | uppercase }}
+      </h3>
+      <span>
+        Created at {{ card.get('date_received') | date: 'yyyy MMM d' }}
+      </span>
+    </div>
+  </div>
+  <div ng-if="card.get('image') == undefined">
+    <h3 class="card-heading simple">
+      {{ card.get('parsed_with') | uppercase }}
+    </h3>
+  </div>
+  <div class="card-body">
+    <p ng-show="card.get('title') != undefined">
+      {{ card.get('title') }}
+    </p>
+    <em ng-show="card.get('description') != undefined" ng-bind-html="card.get('description')">
+    </em>
+  </div>
+  <div class="card-media" ng-show="card.get('image') != undefined">
+    <a class="card-media-container" href="#" ng-cloak>
+      <img src="{{ card.get('image') }}" alt="media"/>
+    </a>
+  </div>
+  <div class="card-actions">
+    <a ng-show="card.get('link') != undefined" href="{{ card.get('link') }}" class="btn">Open</a>
+    <button class="btn pull-right" ng-click="done($index); noshow = true">
+      Archive
+    </button>
+  </div>
+</div>

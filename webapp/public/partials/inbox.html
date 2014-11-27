@@ -1,0 +1,32 @@
+<div ng-show="loggedIn()">
+    <div class="card">
+        <h3 class="card-heading simple">
+            Inboxes
+        </h3>
+        <div class="card-body">
+            <table class="table table-striped" ng-show="inboxes.length>0" ng-cloak>
+                <tbody>
+                    <tr ng-controller="InboxController" ng-repeat="inbox in inboxes">
+                        <td>
+                            {{ inbox.email }}
+                        </td>
+                        <td>
+                            <a href='#' class="btn">Remove</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="text-align: center">
+                <p ng-hide="inboxLoaded===true">Loading...</p>
+                <p ng-show="inboxes.length==0 && inboxLoaded">
+                    You haven't connected any inbox.
+                </p>
+                <a class="btn btn-large btn-primary" ng-click="addNewInbox(currentUser.get('context_io_account_id'))" ng-show="inboxLoaded===true">
+                    Connect My Inbox
+                </a>
+            </div>
+        </div>
+        <div class="card-comments">
+        </div>
+    </div>
+</div>
